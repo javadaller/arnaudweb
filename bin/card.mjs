@@ -1,14 +1,18 @@
-import { readFileSync } from 'node:fs';
-import { join, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+#!/usr/bin/env node
+
+import chalk from 'chalk';
+import boxen from 'boxen';
+import { readFileSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 // Convertir `import.meta.url` en chemin de fichier
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Lire le fichier `output`
-const output = readFileSync(join(__dirname, 'output'), 'utf8');
+const outputFilePath = join(__dirname, 'output');
+const output = readFileSync(outputFilePath, 'utf8');
 
-// Afficher le contenu
-console.log(output);
-console.log(__dirname);
+// Afficher la carte de visite
+console.log(chalk.green(boxen(output, { padding: 1, margin: 1, borderStyle: 'round' })));

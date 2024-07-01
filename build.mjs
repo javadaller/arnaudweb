@@ -22,7 +22,7 @@ const data = {
     handle: chalk.white('arnaudweb'),
     shorthandle: chalk.white('arnaud'),
     work: chalk.white('Junior Developer @ BeCode.org'),
-    npm: chalk.gray('https://npmjs.com/') + chalk.red('~none'),
+    npm: chalk.gray('https://npmjs.com/') + chalk.red('~arnaudweb'),
     github: chalk.gray('https://github.com/') + chalk.green('javadaller'),
     linkedin: chalk.gray('https://linkedin.com/in/') + chalk.blue('arnaud-van-acker'),
     web: chalk.cyan('https://arnaudweb.be'),
