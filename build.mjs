@@ -1,74 +1,80 @@
-// Pull in our modules
+// Importations nécessaires
 import chalk from 'chalk';
 import boxen from 'boxen';
-import { writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { writeFileSync, mkdirSync } from 'node:fs';
+import path, { join } from 'node:path';
+import { fileURLToPath } from 'url';
 
-// Define options for Boxen
+// Convertir import.meta.url en __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Définir les options pour Boxen
 const options = {
-	padding: 1,
-	margin: 1,
-	borderStyle: 'round',
+    padding: 1,
+    margin: 1,
+    borderStyle: 'round',
 };
 
-// Text + chalk definitions
+// Définir le texte et les couleurs avec chalk
 const data = {
-	name: chalk.white('           Arnaud Van Acker'),
-	handle: chalk.white('arnaudweb'),
-	shorthandle: chalk.white('arnaud'),
-	work: chalk.white('Junior Developer @ BeCode.org'),
-	twitter: chalk.gray('https://twitter.com/') + chalk.cyan('none'),
-	mastodon: chalk.gray('https://mastodon.social/') + chalk.magenta('@none'),
-	npm: chalk.gray('https://npmjs.com/') + chalk.red('~none'),
-	github: chalk.gray('https://github.com/') + chalk.green('javadaller'),
-	linkedin: chalk.gray('https://linkedin.com/in/') + chalk.blue('arnaud-van-acker'),
-	web: chalk.cyan('https://arnaudweb.be'),
-	npx: `${chalk.red('npx')} ${chalk.white('arnaudweb')}`,
-	labelWork: chalk.white.bold('    Work:'),
-	labelTwitter: chalk.white.bold(' Twitter:'),
-	labelMastodon: chalk.white.bold('Mastodon:'),
-	labelnpm: chalk.white.bold('     npm:'),
-	labelGitHub: chalk.white.bold('  GitHub:'),
-	labelLinkedIn: chalk.white.bold('LinkedIn:'),
-	labelWeb: chalk.white.bold('     Web:'),
-	labelCard: chalk.white.bold('    Card:'),
+    name: chalk.white('           Arnaud Van Acker'),
+    handle: chalk.white('arnaudweb'),
+    shorthandle: chalk.white('arnaud'),
+    work: chalk.white('Junior Developer @ BeCode.org'),
+    npm: chalk.gray('https://npmjs.com/') + chalk.red('~none'),
+    github: chalk.gray('https://github.com/') + chalk.green('javadaller'),
+    linkedin: chalk.gray('https://linkedin.com/in/') + chalk.blue('arnaud-van-acker'),
+    web: chalk.cyan('https://arnaudweb.be'),
+    npx: `${chalk.red('npx')} ${chalk.white('arnaudweb')}`,
+    labelWork: chalk.white.bold('    Work:'),
+    labelnpm: chalk.white.bold('     npm:'),
+    labelGitHub: chalk.white.bold('  GitHub:'),
+    labelLinkedIn: chalk.white.bold('LinkedIn:'),
+    labelWeb: chalk.white.bold('     Web:'),
+    labelCard: chalk.white.bold('    Card:'),
 };
 
-// Actual strings we're going to output
+// Créer les chaînes de texte à afficher
 const newline = '\n';
 const heading = `${data.name} / ${data.handle} / ${data.shorthandle}`;
 const working = `${data.labelWork}  ${data.work}`;
-const twittering = `${data.labelTwitter}  ${data.twitter}`;
-const mastodoning = `${data.labelMastodon}  ${data.mastodon}`;
 const npming = `${data.labelnpm}  ${data.npm}`;
 const githubing = `${data.labelGitHub}  ${data.github}`;
 const linkedining = `${data.labelLinkedIn}  ${data.linkedin}`;
 const webing = `${data.labelWeb}  ${data.web}`;
 const carding = `${data.labelCard}  ${data.npx}`;
 
-// Put all our output together into a single variable so we can use boxen effectively
+// Combinez toutes les parties en une seule variable pour l'utiliser avec boxen
 const output =
-	heading + // data.name + data.handle
-	newline +
-	newline + // Add one whole blank line
-	working +
-	newline + // data.labelWork + data.work
-	twittering +
-	newline + // data.labelTwitter + data.twitter
-	mastodoning +
-	newline + // data.labelTwitter + data.twitter
-	npming +
-	newline + // data.labelnpm + data.npm
-	githubing +
-	newline + // data.labelGitHub + data.github
-	linkedining +
-	newline + // data.labelLinkedIn + data.linkedin
-	webing +
-	newline +
-	newline + // data.labelWeb + data.web
-	carding; // data.labelCard + data.npx
+    heading +
+    newline +
+    newline + // Ajouter une ligne vide
+    working +
+    newline +
+    npming +
+    newline +
+    githubing +
+    newline +
+    linkedining +
+    newline +
+    webing +
+    newline +
+    newline +
+    carding;
 
-writeFileSync(
-	join(import.meta.dirname, 'bin/output'),
-	chalk.green(boxen(output, options)),
-);
+// Définir le chemin de sortie
+const outputDir = join(__dirname, 'bin');
+const outputPath = join(outputDir, 'output');
+
+// Créer le dossier 'bin' s'il n'existe pas
+mkdirSync(outputDir, { recursive: true });
+
+// Écrire le contenu formaté dans le fichier
+writeFileSync(outputPath, chalk.green(boxen(output, options)), 'utf8');
+
+// Confirmation
+console.log(`Fichier écrit avec succès à ${outputPath}`);
+
+// Afficher la carte de visite dans le terminal
+console.log(chalk.green(boxen(output, options)));

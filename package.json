@@ -1,44 +1,59 @@
 {
-	"name": "arnaudweb",
-	"version": "4.0.1",
-	"description": "A personal card for Arnaud Van Acker (@arnaudweb)",
-	"main": "/bin/card.mjs",
-	"bin": {
-		"bitandbang": "./bin/card.mjs"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/javadaller/arnaudweb.git"
-	},
-	"homepage": "https://arnaudweb.be",
-	"scripts": {
-		"prepublish": "npm run build",
-		"build": "node build.mjs",
-		"dev": "npm run build && node ./bin/card.mjs",
-		"format": "npx @biomejs/biome format --write",
-		"lint": "npx @biomejs/biome lint --write",
-		"check": "npx @biomejs/biome check --write"
-	},
-	"keywords": [
-		"card",
-		"npm",
-		"npm card",
-		"npx",
-		"npx card",
-		"business card"
-	],
-	"author": "Arnaud Van Acker <mail@arnaudweb.be> (http://arnaudweb.be)",
-	"license": "MIT",
-	"files": [
-		"bin/card.mjs",
-		"bin/output"
-	],
-	"devDependencies": {
-		"@biomejs/biome": "1.8.2",
-		"boxen": "^7.1.1",
-		"chalk": "^5.3.0"
-	},
-	"bugs": {
-		"url": "https://github.com/javadaller/arnaudweb/issues"
-	}
+  "name": "arnaudweb",
+  "version": "4.0.1",
+  "description": "A personal card for Arnaud Van Acker (@arnaudweb)",
+  "main": "/bin/card.mjs",
+  "bin": {
+    "arnaudweb": "bin/card.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javadaller/arnaudweb.git"
+  },
+  "homepage": "https://arnaudweb.be",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "node build.mjs",
+    "dev": "npm run build && node ./bin/card.mjs",
+    "format": "npx @biomejs/biome format --write",
+    "lint": "npx @biomejs/biome lint --write",
+    "check": "npx @biomejs/biome check --write"
+  },
+  "keywords": [
+    "card",
+    "npm",
+    "npm card",
+    "npx",
+    "npx card",
+    "business card"
+  ],
+  "author": "Arnaud Van Acker <mail@arnaudweb.be> (http://arnaudweb.be)",
+  "license": "MIT",
+  "files": [
+    "bin/card.mjs",
+    "bin/output"
+  ],
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.2",
+    "boxen": "^7.1.1",
+    "chalk": "^5.3.0"
+  },
+  "bugs": {
+    "url": "https://github.com/javadaller/arnaudweb/issues"
+  },
+  "dependencies": {
+    "ansi-align": "^3.0.1",
+    "ansi-regex": "^6.0.1",
+    "ansi-styles": "^6.2.1",
+    "camelcase": "^7.0.1",
+    "cli-boxes": "^3.0.0",
+    "eastasianwidth": "^0.2.0",
+    "emoji-regex": "^9.2.2",
+    "is-fullwidth-code-point": "^3.0.0",
+    "string-width": "^5.1.2",
+    "strip-ansi": "^7.1.0",
+    "type-fest": "^2.19.0",
+    "widest-line": "^4.0.1",
+    "wrap-ansi": "^8.1.0"
+  }
 }
